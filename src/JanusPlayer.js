@@ -11,7 +11,7 @@ class JanusPlayer extends Component {
 
     componentDidMount() {
 
-        const { server, iceServers, apisecret, videoOptions } = { ...this.props.options };
+        const { server, iceServers, apisecret, videoOptions } = { ...this.props };
 
         const remoteFeedCallback = (eventType, stream) => {
             if (eventType === 'onremotestream') {
@@ -20,13 +20,13 @@ class JanusPlayer extends Component {
                 const videoTracks = stream.getVideoTracks();
 
                 if (videoTracks === null || videoTracks === undefined || videoTracks.length === 0) {
-                    console.log('Error');
+                    Janus.log('Error');
                 }
 
             } else if (eventType === 'oncleanup') {
-                console.log('Paused');
+                Janus.log('Paused');
             } else if (eventType === 'error') {
-                console.log('Error');
+                Janus.log('Error');
             }
         }
 
@@ -36,7 +36,7 @@ class JanusPlayer extends Component {
             callback: () => {
 
                 if (!Janus.isWebrtcSupported()) {
-                    console.log(' ::: No WebRTC support... ::: ');
+                    Janus.log(' ::: No WebRTC support... ::: ');
                     return;
                 }
 
@@ -76,7 +76,7 @@ class JanusPlayer extends Component {
     render() {
         return (
             <React.Fragment>
-                <video ref={this.videoNode} autoPlay playsInline controls width='320' height='240' />
+                <video ref={this.videoNode} autoPlay playsInline controls width='340' height='200' />
             </React.Fragment>
         )
     }

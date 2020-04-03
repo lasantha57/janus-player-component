@@ -30,7 +30,7 @@ const options = {
 function App() {
   return (
     <div>
-      <JanusPlayer options={options}></JanusPlayer>
+      <JanusPlayer {...options}></JanusPlayer>
     </div>
   );
 }
